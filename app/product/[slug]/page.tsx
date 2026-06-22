@@ -91,7 +91,7 @@ export default function ProductPage() {
   };
 
   // Related products
-  const relatedProducts = products
+  const relatedProducts = (products || [])
     .filter(p => p.category === product.category && p.id !== product.id)
     .slice(0, 4);
 
@@ -142,7 +142,7 @@ export default function ProductPage() {
                   transition={{ duration: 0.2 }}
                 >
                   <Image
-                    src={product.images[currentImageIndex]?.src}
+                    src={(product.images || [])[currentImageIndex]?.src}
                     alt={locale === 'ar' ? product.nameAr : product.name}
                     fill
                     className="object-cover"
@@ -170,7 +170,7 @@ export default function ProductPage() {
               </div>
 
               {/* Video Button */}
-              {product.videos.length > 0 && (
+              {(product.videos || []).length > 0 && (
                 <button
                   onClick={e => {
                     e.stopPropagation();
@@ -186,7 +186,7 @@ export default function ProductPage() {
 
             {/* Thumbnails */}
             <div className="flex gap-2 overflow-x-auto pb-2">
-              {product.images.map((image, index) => (
+              {(product.images || []).map((image, index) => (
                 <button
                   key={image.id}
                   onClick={() => setCurrentImageIndex(index)}
@@ -271,7 +271,7 @@ export default function ProductPage() {
                 </Link>
               </div>
               <div className="flex flex-wrap gap-2">
-                {product.sizes.map(size => (
+                {(product.sizes || []).map(size => (
                   <button
                     key={size}
                     onClick={() => setSelectedSize(size)}
@@ -288,13 +288,13 @@ export default function ProductPage() {
             </div>
 
             {/* Color Selection */}
-            {product.colors.length > 0 && (
+            {(product.colors || []).length > 0 && (
               <div>
                 <span className="text-sm font-medium text-gray-900 mb-2 block">
                   {t.product.selectColor}: {selectedColor?.name}
                 </span>
                 <div className="flex gap-2">
-                  {product.colors.map(color => (
+                  {(product.colors || []).map(color => (
                     <button
                       key={color.hex}
                       onClick={() => setSelectedColor(color)}
@@ -376,7 +376,7 @@ export default function ProductPage() {
             <TabsList>
               <TabsTrigger value="description">{t.product.description}</TabsTrigger>
               <TabsTrigger value="reviews">
-                {t.product.reviews} ({product.reviews.length})
+                {t.product.reviews} ({(product.reviews || []).length})
               </TabsTrigger>
               <TabsTrigger value="shipping">{t.product.shipping}</TabsTrigger>
             </TabsList>
@@ -389,7 +389,7 @@ export default function ProductPage() {
                   {t.product.materials}
                 </h3>
                 <ul className="list-disc list-inside text-gray-600">
-                  {product.materials.map(material => (
+                  {(product.materials || []).map(material => (
                     <li key={material}>{material}</li>
                   ))}
                 </ul>
@@ -444,7 +444,7 @@ export default function ProductPage() {
 
                 {/* Reviews List */}
                 <div className="divide-y">
-                  {product.reviews.map(review => (
+                  {(product.reviews || []).map(review => (
                     <div key={review.id} className="py-4">
                       <div className="flex items-center justify-between mb-2">
                         <div className="flex items-center gap-2">
@@ -533,14 +533,14 @@ export default function ProductPage() {
             </button>
             <div className="relative w-full h-full max-w-5xl max-h-[80vh] m-4">
               <Image
-                src={product.images[currentImageIndex]?.src}
+                src={(product.images || [])[currentImageIndex]?.src}
                 alt={product.name}
                 fill
                 className="object-contain"
               />
             </div>
             <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
-              {product.images.map((_, index) => (
+              {(product.images || []).map((_, index) => (
                 <button
                   key={index}
                   onClick={e => {
@@ -580,7 +580,7 @@ export default function ProductPage() {
                 className="w-full h-full rounded-lg"
                 onClick={e => e.stopPropagation()}
               >
-                <source src={product.videos[0]?.src} type="video/mp4" />
+                <source src={(product.videos || [])[0]?.src} type="video/mp4" />
               </video>
             </div>
           </motion.div>

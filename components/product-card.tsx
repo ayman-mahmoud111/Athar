@@ -49,16 +49,16 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
       <Link href={`/product/${product.slug}`}>
         <div className="relative aspect-[3/4] overflow-hidden bg-gray-100 rounded-lg">
           <Image
-            src={product.images[0].src}
+            src={(product.images || [])[0]?.src}
             alt={locale === 'ar' ? product.nameAr : product.name}
             fill
             className={`object-cover transition-opacity duration-300 ${
               imageIndex === 0 ? 'opacity-100' : 'opacity-0'
             }`}
           />
-          {product.images[1] && (
+          {(product.images || [])[1] && (
             <Image
-              src={product.images[1].src}
+              src={product.images[1]?.src}
               alt={locale === 'ar' ? product.nameAr : product.name}
               fill
               className={`object-cover transition-opacity duration-300 ${
@@ -113,7 +113,7 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
           </motion.div>
 
           {/* Video Badge */}
-          {product.videos.length > 0 && (
+          {(product.videos || []).length > 0 && (
             <div className="absolute bottom-3 right-3 bg-white/90 backdrop-blur-sm text-black text-xs font-medium px-2 py-1 rounded flex items-center gap-1">
               <Play className="w-3 h-3" />
               Video
@@ -154,7 +154,7 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
               <svg
                 key={star}
                 className={`w-3 h-3 ${
-                  star <= Math.round(product.rating) ? 'text-yellow-500 fill-current' : 'text-gray-300'
+                  star <= Math.round(product.rating || 0) ? 'text-yellow-500 fill-current' : 'text-gray-300'
                 }`}
                 viewBox="0 0 20 20"
               >
@@ -162,13 +162,13 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
               </svg>
             ))}
           </div>
-          <span className="text-xs text-gray-500">({product.reviewCount})</span>
+          <span className="text-xs text-gray-500">({product.reviewCount || 0})</span>
         </div>
 
         {/* Quick Size Peek */}
-        {product.sizes.length > 0 && (
+        {(product.sizes || []).length > 0 && (
           <div className="flex items-center gap-1 mt-2">
-            {product.sizes.slice(0, 4).map(size => (
+            {(product.sizes || []).slice(0, 4).map(size => (
               <span
                 key={size}
                 className="text-xs text-gray-400 bg-gray-100 px-1.5 py-0.5 rounded"
@@ -176,8 +176,8 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
                 {size}
               </span>
             ))}
-            {product.sizes.length > 4 && (
-              <span className="text-xs text-gray-400">+{product.sizes.length - 4}</span>
+            {(product.sizes || []).length > 4 && (
+              <span className="text-xs text-gray-400">+{(product.sizes || []).length - 4}</span>
             )}
           </div>
         )}
