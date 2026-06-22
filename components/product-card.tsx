@@ -21,8 +21,8 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
   const [imageIndex, setImageIndex] = useState(0);
 
   const isWishlisted = isInWishlist(product.id);
-  const displayPrice = product.salePrice || product.price;
-  const discount = product.salePrice
+  const displayPrice = product.salePrice || product.price || 0;
+  const discount = product.salePrice && product.price
     ? Math.round(((product.price - product.salePrice) / product.price) * 100)
     : 0;
 

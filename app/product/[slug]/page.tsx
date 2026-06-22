@@ -77,8 +77,8 @@ export default function ProductPage() {
   }
 
   const isWishlisted = isInWishlist(product.id);
-  const displayPrice = product.salePrice || product.price;
-  const discount = product.salePrice
+  const displayPrice = product.salePrice || product.price || 0;
+  const discount = product.salePrice && product.price
     ? Math.round(((product.price - product.salePrice) / product.price) * 100)
     : 0;
 
@@ -236,18 +236,18 @@ export default function ProductPage() {
                 ))}
               </div>
               <span className="text-gray-600">
-                {product.rating} ({product.reviewCount} reviews)
+                {product.rating || 0} ({product.reviewCount || 0} reviews)
               </span>
             </div>
 
             {/* Price */}
             <div className="flex items-center gap-3">
               <span className="text-2xl font-bold text-gray-900">
-                {displayPrice.toLocaleString()} {product.currency}
+                {displayPrice?.toLocaleString() || 0} {product.currency || 'EGP'}
               </span>
-              {product.salePrice && (
+              {product.salePrice && product.price && (
                 <span className="text-lg text-gray-500 line-through">
-                  {product.price.toLocaleString()} {product.currency}
+                  {product.price?.toLocaleString() || 0} {product.currency || 'EGP'}
                 </span>
               )}
             </div>
@@ -256,7 +256,7 @@ export default function ProductPage() {
             <div className="flex items-center gap-2 text-sm text-gray-500">
               <Eye className="w-4 h-4" />
               <span>
-                {product.viewCount.toLocaleString()} {t.product.views}
+                {(product.viewCount || 0).toLocaleString()} {t.product.views}
               </span>
             </div>
 
@@ -402,7 +402,7 @@ export default function ProductPage() {
                   <div className="flex items-center justify-between mb-4">
                     <div>
                       <div className="text-4xl font-bold text-gray-900">
-                        {product.rating}
+                        {product.rating || 0}
                       </div>
                       <div className="flex items-center mt-1">
                         {[1, 2, 3, 4, 5].map(star => (
@@ -420,7 +420,7 @@ export default function ProductPage() {
                         ))}
                       </div>
                       <div className="text-sm text-gray-500 mt-1">
-                        {product.reviewCount} reviews
+                        {product.reviewCount || 0} reviews
                       </div>
                     </div>
                     <div className="space-y-1">

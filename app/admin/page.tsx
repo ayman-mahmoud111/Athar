@@ -50,7 +50,6 @@ import {
 import { Checkbox } from '@/components/ui/checkbox';
 import { toast } from 'sonner';
 import { Product, Category, Size, Color } from '@/types';
-import { supabase } from '@/lib/supabase';
 
 const STORAGE_KEY = 'athar_products';
 const AUTH_KEY = 'athar_admin_auth';
@@ -234,36 +233,14 @@ export default function AdminPage() {
     setImageUrlInput('');
   };
 
-  // Upload image to Supabase storage
-  const uploadImage = async (file: File): Promise<string | null> => {
-    try {
-      setUploadingImage(true);
-      const fileExt = file.name.split('.').pop();
-      const fileName = `${Date.now()}-${Math.random().toString(36).substr(2, 9)}.${fileExt}`;
-      const filePath = `products/${fileName}`;
-
-      const { error: uploadError } = await supabase.storage
-        .from('product-images')
-        .upload(filePath, file);
-
-      if (uploadError) {
-        console.error('Upload error:', uploadError);
-        toast.error('Failed to upload image');
-        return null;
-      }
-
-      const { data } = supabase.storage
-        .from('product-images')
-        .getPublicUrl(filePath);
-
-      return data.publicUrl;
-    } catch (error) {
-      console.error('Upload error:', error);
-      toast.error('Failed to upload image');
-      return null;
-    } finally {
-      setUploadingImage(false);
-    }
+  // Convert file to base64 (stores in localStorage with products)
+  const fileToBase64 = (file: File): Promise<string> => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result as string);
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
   };
 
   // Handle file input change
@@ -271,20 +248,26 @@ export default function AdminPage() {
     const files = e.target.files;
     if (!files || files.length === 0) return;
 
-    for (const file of Array.from(files)) {
-      const url = await uploadImage(file);
-      if (url) {
+    setUploadingImage(true);
+    try {
+      for (const file of Array.from(files)) {
+        const base64 = await fileToBase64(file);
         const newImage = {
           id: 'img-' + Date.now() + '-' + Math.random().toString(36).substr(2, 5),
-          src: url,
+          src: base64,
           alt: formData.name || 'Product image',
         };
         setFormData(prev => ({
           ...prev,
           images: [...(prev.images || []), newImage],
         }));
-        toast.success('Image uploaded');
+        toast.success('Image added');
       }
+    } catch (error) {
+      console.error('Upload error:', error);
+      toast.error('Failed to process image');
+    } finally {
+      setUploadingImage(false);
     }
     e.target.value = '';
   };

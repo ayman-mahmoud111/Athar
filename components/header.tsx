@@ -13,7 +13,6 @@ const navLinks = [
   { href: '/categories', key: 'categories' as const },
   { href: '/about', key: 'about' as const },
   { href: '/contact', key: 'contact' as const },
-  { href: '/admin', label: 'Admin' },
 ];
 
 export function Header() {
@@ -86,13 +85,13 @@ export function Header() {
                     isScrolled ? 'text-gray-900' : 'text-white'
                   }`}
                 >
-                  {link.key ? t.nav[link.key] : link.label}
+                  {t.nav[link.key]}
                 </Link>
               ))}
             </nav>
 
             {/* Actions */}
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-2 sm:space-x-4">
               {/* Search Button */}
               <button
                 onClick={() => setIsSearchOpen(true)}
@@ -104,10 +103,10 @@ export function Header() {
                 <Search className="w-5 h-5" />
               </button>
 
-              {/* Language Switcher */}
+              {/* Language Switcher - hidden on very small screens */}
               <button
                 onClick={toggleLanguage}
-                className={`flex items-center space-x-1 px-3 py-1.5 rounded-full border transition-colors ${
+                className={`hidden sm:flex items-center space-x-1 px-3 py-1.5 rounded-full border transition-colors ${
                   isScrolled
                     ? 'border-gray-300 text-gray-900 hover:bg-gray-100'
                     : 'border-white/30 text-white hover:bg-white/10'
@@ -170,7 +169,7 @@ export function Header() {
               animate={{ x: 0 }}
               exit={{ x: locale === 'ar' ? -300 : 300 }}
               transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-              className="absolute top-0 bottom-0 w-80 bg-white shadow-xl"
+              className="absolute top-0 bottom-0 w-72 sm:w-80 bg-white shadow-xl"
               style={{ [locale === 'ar' ? 'left' : 'right']: 0 }}
             >
               <div className="flex items-center justify-between p-4 border-b">
@@ -192,7 +191,7 @@ export function Header() {
                       onClick={() => setIsMobileMenuOpen(false)}
                       className="block py-3 px-4 text-gray-900 hover:bg-gray-100 rounded-lg transition-colors"
                     >
-                      {link.key ? t.nav[link.key] : link.label}
+                      {t.nav[link.key]}
                     </Link>
                   </motion.div>
                 ))}

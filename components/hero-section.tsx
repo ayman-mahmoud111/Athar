@@ -48,12 +48,12 @@ export function HeroSection() {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
+      <div className="relative z-10 text-center text-white px-4 sm:px-6 max-w-4xl mx-auto">
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6"
+          className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-4 sm:mb-6"
         >
           {t.hero.title}
         </motion.h1>
@@ -62,7 +62,7 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="text-lg md:text-xl text-gray-200 mb-10 max-w-2xl mx-auto"
+          className="text-base sm:text-lg md:text-xl text-gray-200 mb-6 sm:mb-10 max-w-2xl mx-auto px-2"
         >
           {t.hero.subtitle}
         </motion.p>
@@ -71,24 +71,24 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4"
+          className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4"
         >
-          <Link href="/shop">
+          <Link href="/shop" className="w-full sm:w-auto">
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-8 py-4 bg-white text-black font-medium rounded-lg flex items-center gap-2 hover:bg-gray-100 transition-colors"
+              className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-white text-black font-medium rounded-lg flex items-center justify-center gap-2 hover:bg-gray-100 transition-colors"
             >
               {t.hero.shopNow}
               <ArrowRight className="w-4 h-4" />
             </motion.button>
           </Link>
 
-          <Link href="/shop?filter=new">
+          <Link href="/shop?filter=new" className="w-full sm:w-auto">
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-8 py-4 bg-transparent border-2 border-white text-white font-medium rounded-lg hover:bg-white/10 transition-colors"
+              className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-transparent border-2 border-white text-white font-medium rounded-lg hover:bg-white/10 transition-colors"
             >
               {t.hero.newCollection}
             </motion.button>
