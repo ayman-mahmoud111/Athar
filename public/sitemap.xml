@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <!-- Home Page -->
+  <url>
+    <loc>https://athar.fashion/</loc>
+    <lastmod>2024-01-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://athar.fashion/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://athar.fashion/"/>
+  </url>
+
+  <!-- Shop Page -->
+  <url>
+    <loc>https://athar.fashion/shop</loc>
+    <lastmod>2024-01-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Categories Page -->
+  <url>
+    <loc>https://athar.fashion/categories</loc>
+    <lastmod>2024-01-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- About Page -->
+  <url>
+    <loc>https://athar.fashion/about</loc>
+    <lastmod>2024-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Contact Page -->
+  <url>
+    <loc>https://athar.fashion/contact</loc>
+    <lastmod>2024-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Wishlist Page -->
+  <url>
+    <loc>https://athar.fashion/wishlist</loc>
+    <lastmod>2024-01-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Admin Page -->
+  <url>
+    <loc>https://athar.fashion/admin</loc>
+    <lastmod>2024-01-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <!-- Category Pages -->
+  <url>
+    <loc>https://athar.fashion/shop?category=men</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://athar.fashion/shop?category=women</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://athar.fashion/shop?category=hoodies</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://athar.fashion/shop?category=t-shirts</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://athar.fashion/shop?category=jeans</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://athar.fashion/shop?category=jackets</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://athar.fashion/shop?category=shoes</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://athar.fashion/shop?category=accessories</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+</urlset>
